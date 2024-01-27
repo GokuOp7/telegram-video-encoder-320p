@@ -109,7 +109,7 @@ async def download_url_link(client, message):
     out_loc = str(out_loc) + "_320p.mp4"
     
     #out, err, rcode, pid = await execute(f"ffmpeg -i \"{dwld_loc}\" -c:v libx264 -crf 20 -s 320*240 -c:a aac -af \"pan=stereo|c0=c01|c1=c1\" -ar 48000 -ab 96k \"{out_loc}\" -y")
-    out, err, rcode, pid = await execute(f"ffmpeg -i \"{dwld_loc}\" -c:v libx264 -crf 20 -s 320*240 -c:a aac -ar 48000 -ab 96k \"{out_loc}\" -y")
+    out, err, rcode, pid = await execute(f"ffmpeg -i \"{dwld_loc}\" -c:v libx265 -preset veryfast -crf 28 -s 854*480 -c:a aac -ab 35k \"{out_loc}\" -y")
     if rcode != 0:
         await message.edit_text(f"**Error Occured.**\n\n{err}")
         print(err)
