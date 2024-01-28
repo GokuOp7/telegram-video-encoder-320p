@@ -145,8 +145,6 @@ async def download_url_link(client, message):
         stream_name = stream["codec_name"]
         stream_type = stream["codec_type"]
         if stream_type in ("video", "subtitle"):
-            pass
-        else:
             continue
         try: 
             lang = str(stream["codec_name"]) + " - " + str(stream["width"]) + "*" + str(stream["height"])
@@ -155,22 +153,6 @@ async def download_url_link(client, message):
         
         DATA[f"{message.chat.id}-{msg.id}"][int(mapping)] = {
             "map" : mapping,
-            "name" : stream_name,
-            "type" : stream_type,
             "lang" : lang,
             "location" : download_location
         }
-        buttons.append([
-            InlineKeyboardButton(
-                f"{stream_type.upper()} - {str(lang).upper()}", f"{stream_type}_{mapping}_{message.chat.id}-{msg.id}"
-            )
-        ])
-
-    buttons.append([
-        InlineKeyboardButton("CANCEL",f"cancel_{mapping}_{message.chat.id}-{msg.id}")
-    ])    
-
-    await msg.edit_text(
-        "**Select the Stream ...**",
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
