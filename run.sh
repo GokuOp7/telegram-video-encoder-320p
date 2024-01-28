@@ -1,1 +1,1 @@
-python3 helpers && python3 -m plugins
+python3 main.py
