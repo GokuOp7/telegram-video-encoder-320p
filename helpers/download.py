@@ -59,8 +59,6 @@ async def download_file(client, message):
         stream_name = stream["codec_name"]
         stream_type = stream["codec_type"]
         if stream_type in ("video", "subtitle"):
-            pass
-        else:
             continue
         try: 
             lang = str(stream["codec_name"]) + " - " + str(stream["width"]) + "*" + str(stream["height"])
